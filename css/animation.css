@@ -1,0 +1,110 @@
+/* =========================================
+   Animation Stylesheet
+========================================= */
+
+/* ---------- Scroll reveal ----------
+   Sections are hidden only when JavaScript is available
+   (script.js adds the "js" class to <html>). */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Skill bars ---------- */
+.progress {
+    transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+}
+
+.reveal.active .progress,
+.no-js .progress {
+    width: var(--w);
+}
+
+/* ---------- Hero entrance ---------- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-text > * {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-text > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.55s; }
+.hero-text > *:nth-child(5) { animation-delay: 0.7s; }
+.hero-text > *:nth-child(6) { animation-delay: 0.85s; }
+
+.hero-image {
+    opacity: 0;
+    animation: fadeIn 1s ease 0.4s forwards;
+}
+
+/* ---------- Floating mini cards ---------- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.hero-mini-card {
+    animation: float 4s ease-in-out infinite;
+}
+
+.hero-mini-card:nth-child(2) { animation-delay: 1.2s; }
+.hero-mini-card:nth-child(3) { animation-delay: 2.4s; }
+
+/* ---------- Scroll-down arrow ---------- */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+.scroll-down i {
+    animation: bounce 1.6s ease-in-out infinite;
+}
+
+/* ---------- Typed.js cursor ---------- */
+.typed-cursor {
+    color: var(--primary);
+    font-weight: 300;
+}
+
+/* ---------- Respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hero-text > *,
+    .hero-image {
+        opacity: 1;
+    }
+}
